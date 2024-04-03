@@ -14,11 +14,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        
         <div className=" flex ">
           <div className=" h-full sticky top-0 border-[#767676] border-r-[1.5px]  ">
             <Navbar />
           </div>
+          
           <div className=" ">
+          <div className=" bg-[#1E1F24] p-5 border-[#767676] border-b-[1.5px] mb-5 sticky top-0">
+        <p className="text-[#00B2FF] text-3xl font-semibold p-2">Page Name</p>
+      </div>
           {children}
           </div>
         
