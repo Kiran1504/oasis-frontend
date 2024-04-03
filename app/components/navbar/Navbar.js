@@ -7,8 +7,8 @@ import Links from "./Links";
 const Navbar = () => {
     return ( 
         <>
-            <div className="navbar h-full w-[18%] bg-black flex flex-col py-[10px]">
-                <div className="nav-head h-[80px] w-full bg-black flex justify-start items-center gap-[5px] px-[2vw]">
+            <div className="navbar min-h-screen  bg-[#1E1F24]  flex flex-col py-[10px] px-10 ">
+                <div className="nav-head h-[80px] w-full  bg-[#1E1F24]  flex justify-start items-center gap-[5px] px-[2vw]">
                     <img src="./image.png" alt="" className="h-[50px] w-[50px]" />
                     <h1 className="text-[30px] font-bold text-[#41a3ff]">OASIS</h1>
                 </div>

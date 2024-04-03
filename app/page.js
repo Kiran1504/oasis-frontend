@@ -3,7 +3,7 @@ import { IoMdPeople } from "react-icons/io";
 export default function Home() {
   return (
     <>
-      <div className="container bg--600 h-screen w-full bg-black">
+      <div className="container bg--600 h-screen w-full  bg-black ">
         <div className="header bg-black h-[20%] w-full text-white flex justify-between items-center px-[3vw] z-[9999]">
           <div className="head-left">
             <h1 className="text-[25px] font-bold">Home</h1>
