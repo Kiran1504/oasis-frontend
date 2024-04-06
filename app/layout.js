@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         
         <div className=" flex ">
-          <div className=" h-full sticky top-0 border-[#767676] border-r-[1.5px]  ">
+          <div className="hidden md:block h-full sticky top-0 border-[#767676] border-r-[1.5px]  ">
             <Navbar />
           </div>
           
