@@ -81,7 +81,7 @@ export default function CreatePost() {
     }, [])
   
     return (
-      <div className="m-4 p-4 bg-gray-800 w-[60%] text-white flex flex-col gap-4">
+      <div className="m-4 p-4 bg-gray-800 w-[60%] rounded-[5px] text-white flex flex-col gap-4">
         <section>
           <h1>CREATE POST</h1>
         </section>

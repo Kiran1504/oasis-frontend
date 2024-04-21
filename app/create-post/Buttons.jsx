@@ -2,7 +2,7 @@
 
 export default function Buttons({ communities, setSelectedCommunity }) {
 
-    // Set the selected community 
+    // Set the selected community
     
     const handleChange = (event) => {
       const selectedCommunity = event.target.value;
@@ -10,14 +10,14 @@ export default function Buttons({ communities, setSelectedCommunity }) {
     };
   
     return (
-      <section className="flex gap-4">
-        <select onChange={handleChange} className="p-2 bg-black rounded-md">
+      <section className="flex flex-col sm:flex-row gap-4">
+        <select onChange={handleChange} className="p-2 bg-black rounded-[5px]">
           <option className="text-black">Select Community</option>
           {communities.map((community, index) => (
             <option key={index} value={community}>{community}</option>
           ))}
         </select>
-        <button type="submit" className="p-2 bg-black rounded-md">Share</button>
+        <button type="submit" className="py-2 px-5 bg-black rounded-[5px]">Share</button>
       </section>
     )
   }

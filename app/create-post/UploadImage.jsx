@@ -30,9 +30,9 @@ export default function UploadImage({ uploadedImage, setUploadedImage }) {
       {uploadedImage ? (
         <img src={uploadedImage.toString()} alt="Uploaded" width="150px" />
       ) : (
-        <div className="w-full min-h-[250px] flex flex-col items-center justify-center border-4 border-dashed border-gray-600 rounded-lg"><img src="/image-regular.svg" alt="Tick" width="70px"></img>
-          <span className="mt-3 text-white text-xl">Drag & Drop your images here</span>
-          <span className="text-gray-500 text-md">or <u className="cursor-pointer text-white">browse</u> from gallery</span>
+        <div className="w-full min-h-[250px] flex flex-col items-center justify-center border-4 border-dashed border-gray-600 rounded-[7px]"><img src="/image-regular.svg" alt="Tick" width="70px"></img>
+          <span className="mt-3 p-2 text-white text-center text-xl">Drag & Drop your images here</span>
+          <span className="p-2 text-gray-500 text-center text-md">or <u className="cursor-pointer text-white">browse</u> from gallery</span>
         </div>
       )}
     </section>
