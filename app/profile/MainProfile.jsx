@@ -1,21 +1,28 @@
 "use client"
 
+
 import UserPosts from "./options/UserPosts"
 import UserCommunities from "./options/UserCommunities"
 import UserEvents from "./options/UserEvents"
 import UserSaved from "./options/UserSaved"
 
 import Links from "./prompts/Links"
-
-import { useState } from "react"
 import ConfirmDelete from "./prompts/ConfirmDelete"
 
-export default function MainProfile({ userInfo }) {
+import { useEffect, useRef, useState } from "react"
 
-    const [activeIndex, setActiveIndex] = useState(0);
+export default function MainProfile({ userInfo, setUserInfo }) {
+
+    const prevIndex = useRef(parseInt(localStorage.getItem("prevIndex")) || 0);
+    const [activeIndex, setActiveIndex] = useState(prevIndex.current);
 
     const [showLinks, setShowLinks] = useState(false);
     const [confirmDelete, setConfirmDelete] = useState(false);
+
+    useEffect(() => {
+        // Update localStorage with the current value of prevIndex
+        localStorage.setItem("prevIndex", activeIndex);
+    }, [activeIndex]);
 
     let ConditionalComponent;
 
@@ -39,6 +46,10 @@ export default function MainProfile({ userInfo }) {
 
     const handleShowLinks = () => {
         setShowLinks(true);
+    }
+
+    const handleEditProfile = () => {
+        
     }
 
     return (
@@ -76,7 +87,7 @@ export default function MainProfile({ userInfo }) {
                         </div>
                     </div>
                     <div className="col-span-3 flex flex-col justify-center items-center">
-                        <button className="m-2 px-4 py-2 border border-solid border-slate-100 rounded-xl bg-[#323741]">Edit Profile</button>
+                        <button onClick={handleEditProfile} className="m-2 px-4 py-2 border border-solid border-slate-100 rounded-xl bg-[#323741]">Edit Profile</button>
                     </div>
                 </div>
                 <div></div>
@@ -103,7 +114,7 @@ export default function MainProfile({ userInfo }) {
             </section>
             <section className="mx-[1.32rem]">
                 {
-                    ConditionalComponent && <ConditionalComponent posts={userInfo.posts} communities={userInfo.communities} events={userInfo.events} saved={userInfo.saved} setConfirmDelete={setConfirmDelete} />
+                    ConditionalComponent && <ConditionalComponent userInfo={userInfo} setUserInfo={setUserInfo} setConfirmDelete={setConfirmDelete} />
                 }
             </section>
         </div>
@@ -122,7 +133,3 @@ const ProfileButton = ({ tag, index, activeIndex, setActiveIndex }) => {
         </button>
     )
 }
-
-
-
-

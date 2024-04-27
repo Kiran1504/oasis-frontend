@@ -41,7 +41,7 @@ export default function FollowersCard({ username, followers, followings }) {
         <div className="h-[2px] my-3 bg-[#838d9e]"></div>
 
         <section className="text-lg min-h-[40px] max-h-[60vh] overflow-x-hidden">
-          <div class="scroll" className="overflow-y-auto ">
+          <div className="overflow-y-auto ">
             {
               activeTab == 0 ? (
                 followers.map((account, index) => (

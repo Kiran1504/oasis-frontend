@@ -1,36 +1,40 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function UserPosts({ posts, setConfirmDelete }) {
+export default function UserPosts({ userInfo, setUserInfo, setConfirmDelete }) {
 
-    const updatedPosts = [...posts];
+    const posts = [...userInfo.posts];
 
     useEffect(() => {
-
         const updateUserPosts = async () => {
+            console.log('updating user info');
             try {
-                //Extract the user token from the cookie
+                // Extract the user token from the cookie
 
-                //just send posts: updatedPosts
-                await axios.post('// hit api end point', {
+                // Send the API request to update user posts
+                const response = await axios.post('// hit api end point', {
                     headers: {
                         // 'Authorization': token,
                         // 'Content-Type': 'application/json'
+                    },
+                    data: {
+                        // userInfo: ({...prevInfo, posts: posts }));
                     }
                 });
 
+                const updatedUserPosts = response.data.posts;
+                setUserInfo(prevInfo => ({ ...prevInfo, posts: updatedUserPosts }));
+
+            } catch (error) {
+                console.log("Error occurred while updating user's posts: ", error);
             }
-            catch (error) {
-                console.log("error occured while updating user's posts: ", error);
-            }
-        }
+        };
 
         return () => {
-            console.log('sending')
+            // Call the function to send the API request only on unmount
             updateUserPosts();
-        }
-
-    }, [])
+        };
+    }, []);
 
     const handleCreatePostClick = () => {
         // navigate('/Paste create post relative url here')
@@ -56,10 +60,12 @@ export default function UserPosts({ posts, setConfirmDelete }) {
 
                         if (!likedSVG) {
                             setImageSrc('heart-solid.svg');
-                            updatedPosts[index].likes += 1;
+                            posts[index].likes += 1;
+                            posts[index].liked = true;
                         } else {
                             setImageSrc('heart-regular.svg');
-                            updatedPosts[index].likes -= 1;
+                            posts[index].likes -= 1;
+                            posts[index].liked = false;
                         }
                     }
 

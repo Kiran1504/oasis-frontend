@@ -95,6 +95,7 @@ export default function UserProfile() {
     useEffect(() => {
 
         const fetchUserInfo = async () => {
+            console.log('getting user info')
             try {
 
                 //Extract the user token from the cookie
@@ -115,16 +116,13 @@ export default function UserProfile() {
 
         fetchUserInfo();
 
-        return () => {
-            setUserInfo(prevUserInfo => prevUserInfo);
-        }
-    }, [])
+    }, [userInfo])
 
     return (
         <div className="grid grid-cols-12">
             <div className="col-span-2"></div>
             <div className="col-span-7">
-                <MainProfile userInfo={userInfo} />
+                <MainProfile userInfo={userInfo} setUserInfo={setUserInfo}/>
             </div>
             <div className="col-span-3">
                 <FollowersCard username={userInfo.username} followers={userInfo.followers} followings={userInfo.followings} />

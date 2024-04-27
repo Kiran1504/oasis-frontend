@@ -1,7 +1,9 @@
 import { useState } from "react"
 
-export default function UserCommunities({ communities }) {
+export default function UserCommunities({ userInfo, setUserInfo }) {
 
+    const communities = userInfo.communities
+    
     const [activeIndex, setActiveIndex] = useState(0);
 
     return (

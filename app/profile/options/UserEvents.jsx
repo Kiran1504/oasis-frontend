@@ -1,6 +1,9 @@
 import { useState } from "react";
 
-export default function UserEvents({ events }) {
+export default function UserEvents({ userInfo, setUserInfo }) {
+
+    const events = userInfo.events;
+    
     const [activeIndex, setActiveIndex] = useState(0);
 
     const months = {
