@@ -1,10 +1,10 @@
 // Component for the TextFields
 
-export default function TextFields({ title, setTitle, text, setText, words, setWords }) {
+export default function TextFields({ setTitle, body, setBody, words, setWords }) {
 
   // Basic structuring for the display for words in textarea
 
-  const wordsDisplay = 'Words: ' + words + '/' + '200';
+  const wordsDisplay = 'Words: ' + words + '/' + '4000';
   const warning = "Maximum word count reached";
 
   const updateTitle = (value) => {
@@ -13,9 +13,9 @@ export default function TextFields({ title, setTitle, text, setText, words, setW
 
   const updateWords = (newText) => {
 
-    // Case for if words are already 200
+    // Case for if words are already 4000
 
-    if (words === 200 && newText.length > text.length && newText.endsWith(' ')) {
+    if (words === 4000 && newText.length > body.length && newText.endsWith(' ')) {
       return;
     }
 
@@ -25,18 +25,18 @@ export default function TextFields({ title, setTitle, text, setText, words, setW
 
     // Case for setting the new inputs
 
-    if (filteredWords.length <= 200) {
-      setText(newText);
+    if (filteredWords.length <= 4000) {
+      setBody(newText);
       setWords(filteredWords.length);
     }
   }
   return (
     <section className="flex flex-col gap-4">
       <input placeholder="Title" className="p-2 text-black bg-slate-200 rounded-[5px]" onChange={(e) => updateTitle(e.target.value)}></input>
-      <textarea placeholder="Write a caption..." rows={5} value={text} onChange={(e) => updateWords(e.target.value)} className="text-black bg-slate-200 p-2 h-full rounded-[5px] resize-none"></textarea>
+      <textarea placeholder="Write a caption..." rows={5} value={body} onChange={(e) => updateWords(e.target.value)} className="text-black bg-slate-200 p-2 h-full rounded-[5px] resize-none"></textarea>
       <div className="flex flex-row gap-4">
         <div>{wordsDisplay}</div>
-        <div className={`${words === 200 ? 'display-inline-block' : 'hidden'} text-red-500`}>
+        <div className={`${words === 4000 ? 'display-inline-block' : 'hidden'} text-red-500`}>
           {warning}
         </div>
       </div>
