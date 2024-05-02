@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 
-export default function FollowersCard({ username, followers, followings }) {
+export default function FollowersCard({ username, followers, following }) {
 
   const [activeTab, setActiveTab] = useState(0);
+
+  console.log(following);
 
   return (
     <div className="bg-[#323741] text-white rounded-[30px] mx-5 my-5">
@@ -26,14 +28,14 @@ export default function FollowersCard({ username, followers, followings }) {
         <section className="grid grid-cols-2">
           <div className={`flex flex-col text-center ${activeTab == 0 ? 'bg-[#2a313d]' : 'bg-transparent'}`}>
             <button onClick={() => setActiveTab(0)}>
-              <h1>Followers</h1>
+              <h1>followers</h1>
               <div>{followers.length}</div>
             </button>
           </div>
           <div className={`flex flex-col text-center ${activeTab == 1 ? 'bg-[#2a313d]' : 'bg-transparent'}`}>
             <button onClick={() => setActiveTab(1)}>
               <h1>Following</h1>
-              <div>{followings.length}</div>
+              <div>{following.length}</div>
             </button>
           </div>
         </section>
@@ -48,8 +50,8 @@ export default function FollowersCard({ username, followers, followings }) {
                   <Follower key={index} account={account} />
                 ))
               ) : (
-                followings.map((account, index) => (
-                  <Follower key={index} account={account} />
+                following.map((account, index) => (
+                  <Following key={index} account={account} />
                 ))
               )
             }
@@ -66,7 +68,16 @@ const Follower = ({ account }) => {
   return (
     <button className="p-2 flex flex-row gap-4">
       <div className="ml-2 border border-white h-[40px] w-[40px] rounded-full"><img src='/image.png'></img></div>
-      <div className="flex flex-col justify-center text-lg" style={{ marginTop: '4px' }}>{account}</div>
+      <div className="flex flex-col justify-center text-lg" style={{ marginTop: '4px' }}>{account.follower_name}</div>
+    </button>
+  )
+}
+
+const Following = ({ account }) => {
+  return (
+    <button className="p-2 flex flex-row gap-4">
+      <div className="ml-2 border border-white h-[40px] w-[40px] rounded-full"><img src='/image.png'></img></div>
+      <div className="flex flex-col justify-center text-lg" style={{ marginTop: '4px' }}>{account.username}</div>
     </button>
   )
 }

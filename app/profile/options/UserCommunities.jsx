@@ -1,8 +1,6 @@
 import { useState } from "react"
 
-export default function UserCommunities({ userInfo, setUserInfo }) {
-
-    const communities = userInfo.communities
+export default function UserCommunities({ communities }) {
     
     const [activeIndex, setActiveIndex] = useState(0);
 
@@ -19,18 +17,18 @@ export default function UserCommunities({ userInfo, setUserInfo }) {
                             <div key={index} className="grid grid-cols-12 gap-3 bg-[#2a313d] my-4 border border-solid border-slate-400 rounded-2xl py-4 px-6">
                                 <section className="col-span-3 flex flex-col justify-center">
                                     <figure>
-                                        <img src={community.imageCommunity} width="175px" className="mt-[3px] h-auto border border-solid border-white rounded-[1rem]"></img>
+                                        <img src={community.icon} width="175px" className="mt-[3px] h-auto border border-solid border-white rounded-[1rem]"></img>
                                     </figure>
                                 </section>
                                 <section className="col-span-9">
                                     <div className="flex flex-col gap-2">
                                         <div className="flex flex-row w-full justify-between">
-                                            <h1 className="font-bold text-4xl text-blue-500">{community.title}</h1>
+                                            <h1 className="font-bold text-4xl text-blue-500">{community.name}</h1>
                                             <div className="text-xl flex flex-row items-center gap-2">
                                                 <figure>
                                                     <img src='/user-solid.svg' width="15px" height="15px"></img>
                                                 </figure>
-                                                {community.followers}</div>
+                                                {community.no_of_subscribers}</div>
                                             <div className="flex items-center">
                                                 <button className="px-2 py-1 border border-solid border-slate-400 rounded-full">Following</button>
                                             </div>
@@ -52,20 +50,20 @@ export default function UserCommunities({ userInfo, setUserInfo }) {
                     communities.joined.map((community, index) => {
                         return (
                             <div key={index} className="grid grid-cols-12 gap-3 bg-[#2a313d] my-4 border border-solid border-slate-400 rounded-2xl py-4 px-6">
-                                <section className="col-span-3 flex flex-row justify-between">
+                                <section className="col-span-3 flex flex-col justify-center">
                                     <figure>
-                                        <img src='/image.png' width="175px" className="mt-[3px] h-auto border border-solid border-white rounded-[1rem]"></img>
+                                        <img src={community.icon} width="175px" className="mt-[3px] h-auto border border-solid border-white rounded-[1rem]"></img>
                                     </figure>
                                 </section>
                                 <section className="col-span-9">
                                     <div className="flex flex-col gap-2">
                                         <div className="flex flex-row w-full justify-between">
-                                            <h1 className="font-bold text-4xl text-blue-500">{community.title}</h1>
+                                            <h1 className="font-bold text-4xl text-blue-500">{community.name}</h1>
                                             <div className="text-xl flex flex-row items-center gap-2">
                                                 <figure>
                                                     <img src='/user-solid.svg' width="15px" height="15px"></img>
                                                 </figure>
-                                                {community.followers}</div>
+                                                {community.no_of_subscribers}</div>
                                             <div className="flex items-center">
                                                 <button className="px-2 py-1 border border-solid border-slate-400 rounded-full">Following</button>
                                             </div>
@@ -75,7 +73,7 @@ export default function UserCommunities({ userInfo, setUserInfo }) {
                                                 </button>
                                             </div>
                                         </div>
-                                        <div>
+                                        <div className="text-justify">
                                             {community.description}
                                         </div>
                                     </div>

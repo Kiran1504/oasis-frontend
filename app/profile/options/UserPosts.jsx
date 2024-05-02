@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function UserPosts({ userInfo, setUserInfo, setConfirmDelete }) {
+export default function UserPosts({ posts}) {
 
-    const posts = [...userInfo.posts];
-
-    useEffect(() => {
+    /* useEffect(() => {
         const updateUserPosts = async () => {
             console.log('updating user info');
             try {
                 // Extract the user token from the cookie
+                const token = localStorage.getItem('token');
 
                 // Send the API request to update user posts
-                const response = await axios.post('// hit api end point', {
+                const response = await axios.post('// hit like post end point', {
                     headers: {
-                        // 'Authorization': token,
-                        // 'Content-Type': 'application/json'
+                        'Authorization': token,
+                        'Content-Type': 'application/json'
                     },
                     data: {
                         // userInfo: ({...prevInfo, posts: posts }));
@@ -34,7 +33,7 @@ export default function UserPosts({ userInfo, setUserInfo, setConfirmDelete }) {
             // Call the function to send the API request only on unmount
             updateUserPosts();
         };
-    }, []);
+    }, []); */
 
     const handleCreatePostClick = () => {
         // navigate('/Paste create post relative url here')
