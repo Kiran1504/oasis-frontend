@@ -1,25 +1,20 @@
-import ReactPlayer from "react-player";
+import React from "react";
 
-export default function PostCard({ loadMedia, likedState, followingState, post, isActive, muted, setMuted, postRef, playerRef }) {
-    const toggleMute = () => {
-        setMuted(prevMuted => !prevMuted);
-    }
-
+const PostCard = React.memo(({ post }) => {
+    console.log('rendered-post-card');
     return (
-        <div ref={postRef} className="lazy-post-card">
-            <div className="my-[1rem] px-[2rem] text-white flex flex-col w-[70%] min-h-[100px] rounded-[15px] bg-[#2a313d]">
+        <div>
+            <div className="my-[1rem] px-[2rem] text-white flex flex-col w-full min-h-[100px] rounded-[15px] bg-[#2a313d]">
                 <section>
                     <div className="mt-[1rem] grid grid-cols-12 items-center">
                         <div className="col-span-2 rounded-full overflow-hidden w-[50px] h-[50px] border border-solid border-white">
                             <figure className="w-full h-full">
                                 {
-                                    loadMedia && post.user.profile_picture ? (
+                                    post.user.profile_picture ? (
                                         <img src={post.user.profile_picture} className="w-full h-full object-cover" alt="Profile Picture"></img>
                                     )
                                         :
-                                        (
-                                            <img src='/github.svg' className="w-full h-full object-cover" alt="Profile Picture"></img>
-                                        )
+                                        <img src='/github.svg' className="w-full h-full object-cover" alt="Profile Picture"></img>
                                 }
                             </figure>
                         </div>
@@ -29,7 +24,7 @@ export default function PostCard({ loadMedia, likedState, followingState, post, 
                         </div>
                         <div className="col-span-3 flex flex-col items-center text-[1rem]">
                             {
-                                !followingState && (
+                                !post.isFollowing && (
                                     <button className="m-2 p-2 px-3 min-w-[75px] border border-solid border-blue-500 rounded-[5px]">Follow&nbsp;+</button>
                                 )
                             }
@@ -49,7 +44,7 @@ export default function PostCard({ loadMedia, likedState, followingState, post, 
                 </section>
                 <section>
                     {
-                        loadMedia && post.media_type ? (
+                        post.media_type ? (
                             <div className="rounded-[10px] w-full min-h-[50px] overflow-hidden">
                                 {
                                     post.media_type === 'video' ? (
@@ -58,13 +53,12 @@ export default function PostCard({ loadMedia, likedState, followingState, post, 
                                                 <button onClick={(e) => { e.stopPropagation(); toggleMute(); }}>{muted ? 'Unmute' : 'Mute'}</button>
                                             </div>
                                             <ReactPlayer id="post-video-player"
-                                                ref={playerRef}
                                                 controls
                                                 url={post.media}
                                                 width="100%"
                                                 height="100%"
-                                                muted={muted}
-                                                playing={isActive}
+                                                muted={true}
+                                                playing={true}
                                             />
                                         </div>
                                     )
@@ -85,25 +79,23 @@ export default function PostCard({ loadMedia, likedState, followingState, post, 
                     <div className="flex flex-row gap-6">
                         <div className="flex flex-col items-center">
                             <figure>
-                                <img src={likedState ? '/heart-solid.svg' : '/heart-regular.svg'} width="25px"></img>
+                                <img src={post.isLiked ? '/heart-solid.svg' : '/heart-regular.svg'} width="25px"></img>
                             </figure>
-                            <figcaption>{post.likes}</figcaption>
+                            <figcaption>{post.no_of_likes}</figcaption>
                         </div>
                         <div className="flex flex-col">
-                            <figure>
-                                <img src='/comment-regular.svg' width="25px"></img>
-                            </figure>
-                            <figcaption>{post.comments}</figcaption>
-                        </div>
-                        <div className="flex flex-col">
-                            <figure>
-                                <img src='/share-solid.svg' width="25px"></img>
-                            </figure>
-                            <figcaption>{post.shares}</figcaption>
+                            <button>
+                                <figure>
+                                    <img src='/comment-regular.svg' width="25px"></img>
+                                </figure>
+                                <figcaption>{post.comments.length}</figcaption>
+                            </button>
                         </div>
                     </div>
                 </section>
             </div>
         </div>
     )
-}
+})
+
+export default PostCard;

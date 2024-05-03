@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Post from "./Post";
-import PostCard from "./PostCard";
+import Posts from "./Post";
 
 export default function GlobalFeed() {
     const [posts, setPosts] = useState([]);
@@ -29,7 +28,7 @@ export default function GlobalFeed() {
     return (
         <div>
             {posts.map((post, index) => (
-                <Post key={index} post={post} isActive={post.id === activeVideoId} setActiveVideoId={setActiveVideoId} muted={muted} setMuted={setMuted} />
+                <Posts key={index} post={post} isActive={post.id === activeVideoId} setActiveVideoId={setActiveVideoId} muted={muted} setMuted={setMuted} />
             ))}
         </div>
     );
