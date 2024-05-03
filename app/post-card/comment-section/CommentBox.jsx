@@ -24,7 +24,7 @@ export default function CommentBox({ postId }) {
                     }
                 })
 
-            console.log(response.data);
+            setComment('');
         }
         catch (error) {
             console.log('error in posting comment: ', error);
@@ -64,9 +64,18 @@ export default function CommentBox({ postId }) {
                 )
             }
             <div className="grid grid-cols-12 w-full gap-2 relative">
-                <button onClick={() => setDisplayEmojiPicker(true)} className="col-span-1">㋛</button>
-                <input type="text" placeholder="Add a comment" contentEditable="true" onChange={(e) => handleChange(e)} className="col-span-9 p-2 rounded-[15px] text-black"></input>
-                <button onClick={handlePostComment} className="col-span-2 p-2 bg-blue-500 rounded-[15px]">Post 🎯</button>
+                <button onClick={() => setDisplayEmojiPicker(true)} className="col-span-1 flex flex-col items-center mt-[10px]">㋛</button>
+                <div className="col-span-9 rounded-[15px] text-black">
+                    <textarea
+                        placeholder="Add a comment"
+                        value={comment}
+                        onChange={(e) => handleChange(e)}
+                        className="bg-white w-full overflow-auto outline-none p-2 rounded-[10px] min-h-[40px] max-h-[200px]"
+                        rows="50"
+                        style={{ height: `${comment.split('\n').length * 20 + 20}px` }}
+                    />
+                </div>
+                <button onClick={handlePostComment} className="col-span-2 p-2 bg-blue-500 rounded-[15px] max-h-[40px]">Post 🎯</button>
             </div>
         </div>
     )

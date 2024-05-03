@@ -1,45 +1,52 @@
-import { useEffect } from "react";
-import PostCard from "./PostCard";
-import CommentSection from "./comment-section/CommentSection"
+"use client";
 
-import { useLocation } from "react-router-dom"
-import { useCallback, useState } from "react";
+import { useEffect, useState } from "react";
+//import { useRouter } from "next/router";
 import axios from "axios";
 
+import PostCard from "./PostCard";
+import CommentSection from "./comment-section/CommentSection";
+
 export default function ViewPost() {
-    console.log('in view-post')
-    const location = useLocation();
-    const postId = location.pathname.split('/').pop();
+  const [post, setPost] = useState(null);
+  const [comments, setComments] = useState(null);
+  //const router = useRouter();
 
-    const [post, setPost] = useState(null);
-    const [comments, setComments] = useState(null);
+  //const { pid: postId } = router.query;
 
-    console.log('rendered-view-post')
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const { data } = await axios.get(
+          `http://3.110.161.150:4000/post/v2?id=${postId}`,
+          {
+            headers: {
+              Authorization: token,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        setPost(data);
+        setComments(data.comments);
+      } catch (error) {
+        console.error("Error occurred while fetching post state:", error);
+      }
+    };
 
-    const fetchPost = useCallback(async () => {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await axios.get(`http://3.110.161.150:4000/post/v2?id=${postId}`, {
-                headers: {
-                    'Authorization': token,
-                    'Content-Type': 'application/json'
-                }
-            });
-            setPost(response.data);
-            setComments(response.data.comments);
-        } catch (error) {
-            console.log('Error occurred while fetching post state: ', error);
-        }
-    }, [postId]);
+    if (postId) {
+      fetchPost();
+    }
+  }, [postId]);
 
-    useEffect(() => {
-        fetchPost();
-    }, [fetchPost]);
-
-    return (
-        <div>
-            {post ? <PostCard post={post} /> : <div>Loading...</div>}
-            {post ? <CommentSection postId={postId} comments={comments} setComments={setComments}  /> : <div>Loading...</div>}
-        </div>
-    )
+  return (
+    <div>
+      {post ? <PostCard post={post} /> : <div>Loading...</div>}
+      {post ? (
+        <CommentSection postId={postId} comments={comments} setComments={setComments} />
+      ) : (
+        <div>Loading...</div>
+      )}
+    </div>
+  );
 }
