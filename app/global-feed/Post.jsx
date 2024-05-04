@@ -38,7 +38,7 @@ export default function Post({ post, isActive, setActiveVideoId, muted, setMuted
                     handleScroll(); // Update active video when post enters view
                 }
             });
-        }, { threshold: 0.1, root: null, rootMargin: '500px' });
+        }, { threshold: 0.5, root: null});
 
         const handleScroll = () => {
             if (postRef.current) {

@@ -1,5 +1,6 @@
 //import { useRouter } from "next/router";
 import ReactPlayer from "react-player";
+import Link from 'next/link';
 
 export default function PostCardFeed({ loadMedia, likedState, followingState, post, isActive, muted, setMuted, postRef, playerRef }) {
     //const router = useRouter();
@@ -89,10 +90,15 @@ export default function PostCardFeed({ loadMedia, likedState, followingState, po
                         </div>
                         <div className="flex flex-col">
                             <button onClick={handleViewPost}>
-                                <figure>
-                                    <img src='/comment-regular.svg' width="25px" alt="Comment Icon" />
-                                </figure>
-                                <figcaption>{post.comments}</figcaption>
+                            {
+                                localStorage.setItem('postId', post.id)
+                            }
+                                <Link href={{ pathname: '/post-card', query: post.id}}>
+                                    <figure>
+                                        <img src='/comment-regular.svg' width="25px" alt="Comment Icon" />
+                                    </figure>
+                                    <figcaption>{post.comments}</figcaption>
+                                </Link>
                             </button>
                         </div>
                     </div>

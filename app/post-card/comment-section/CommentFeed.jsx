@@ -1,16 +1,28 @@
+import CommentBox from "./CommentBox";
 import CommentReplies from "./CommentReplies"
 
 import { useState } from "react";
+import ReplyCommentBox from "./ReplyCommentBox";
 
 export default function CommentFeed({ postId, comments, setComments }) {
 
     const [viewReplies, setViewReplies] = useState(Array(comments.length).fill(false));
+    const [openReplyBox, setOpenReplyBox] = useState([]);
 
     const toggleViewReplies = (index) => {
         const newViewReplies = [...viewReplies];
         newViewReplies[index] = !newViewReplies[index];
 
         setViewReplies(newViewReplies);
+    }
+
+    const toggleReplyBox = (index) => {
+        const newOpenReplyBox = [...openReplyBox];
+        newOpenReplyBox.fill(false);
+
+        newOpenReplyBox[index] = true;
+
+        setOpenReplyBox(newOpenReplyBox);
     }
 
     return (
@@ -33,9 +45,16 @@ export default function CommentFeed({ postId, comments, setComments }) {
                         </div>
                         <div>{comment.comment}</div>
                         <div className="flex flex-row gap-4">
-                            <button>Reply</button>
+                            <button onClick={() => toggleReplyBox(index)}>Reply</button>
                             <button onClick={() => toggleViewReplies(index)} className="text-slate-400">View Replies</button>
                         </div>
+                        {
+                            openReplyBox[index] && (
+                                <div className="mt-[10px]">
+                                    <ReplyCommentBox parent_id={comment.id} />
+                                </div>
+                            )
+                        }
                         {
                             viewReplies[index] && (
                                 <div className="mt-[10px]">

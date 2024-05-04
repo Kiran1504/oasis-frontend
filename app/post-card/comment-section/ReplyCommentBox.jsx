@@ -4,9 +4,7 @@ import axios from "axios";
 import EmojiPicker from 'emoji-picker-react';
 import GifPicker from "gif-picker-react";
 
-// NOW I AM GONNA ADD GIFFY PICKER SO UNDO BEWARE
-
-export default function CommentBox({ postId }) {
+export default function ReplyCommentBox({ parent_id }) {
 
     const [comment, setComment] = useState('');
 
@@ -20,8 +18,8 @@ export default function CommentBox({ postId }) {
     const handlePostComment = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post('http://3.110.161.150:4000/api/post/comment', {
-                postId: 16,
+            const response = await axios.post('http://3.110.161.150:4000/api/post/childComment', {
+                parent_id: parent_id,
                 comment: comment
             },
                 {

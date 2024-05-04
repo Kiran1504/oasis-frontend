@@ -14,6 +14,8 @@ export default function ViewPost() {
 
   //const { pid: postId } = router.query;
 
+  const postId = localStorage.getItem('postId');
+
   useEffect(() => {
     const fetchPost = async () => {
       try {

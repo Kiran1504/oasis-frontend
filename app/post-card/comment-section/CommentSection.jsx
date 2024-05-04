@@ -3,9 +3,9 @@ import CommentFeed from "./CommentFeed";
 
 import { useState } from "react";
 
-export default function CommentSection({ postId, /*comments, setComments*/ }) {
+export default function CommentSection({ postId, comments, setComments }) {
 
-    const [comments, setComments] = useState([{
+    /* const [comments, setComments] = useState([{
         id: 1,
         comment_by: {
             id: 9,
@@ -129,7 +129,9 @@ export default function CommentSection({ postId, /*comments, setComments*/ }) {
             },
         ]
     },
-    ]);
+    ]); */
+
+    console.log(comments);
 
     return (
         <div className="w-full bg-[#2a313d] text-white p-2 rounded-[10px]">
