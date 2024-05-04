@@ -63,9 +63,9 @@ export default function ReplyCommentBox({ parent_id }) {
 
     const handleGifClick = (gif) => {
         console.log('Gif clicked:', gif);
-        setGifURL(gif.tenorUrl);
-        
-        gifPickerRef.current.blur();
+        setGifURL(gif.url);
+
+        console.log(gif.url);
     }
 
     return (

@@ -9,11 +9,11 @@ export default function Home() {
   return (
     <div className="grid grid-cols-12">
       <div className="col-span-3"></div>
-      <div className="col-span-5">
-        <GlobalFeed />
+      <div className="col-span-6">
+        <CommentSection />
         <div className="h-[200px]"></div>
       </div>
-      <div className="col-span-4"></div>
+      <div className="col-span-3  "></div>
     </div>
   )
 }

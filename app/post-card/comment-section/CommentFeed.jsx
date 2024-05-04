@@ -43,7 +43,17 @@ export default function CommentFeed({ postId, comments, setComments }) {
                         <div className="flex flex-col h-[30px] justify-center">
                             <div>{comment.comment_by.username}</div>
                         </div>
-                        <div>{comment.comment}</div>
+                        {
+                            comment.comment ? (
+                                <div>{comment.comment}</div>
+                            ) : (
+                                <div className="max-w-[200px]">
+                                    <figure>
+                                        <img src={comment.gifURL}></img>
+                                    </figure>
+                                </div>
+                            )
+                        }
                         <div className="flex flex-row gap-4">
                             <button onClick={() => toggleReplyBox(index)}>Reply</button>
                             <button onClick={() => toggleViewReplies(index)} className="text-slate-400">View Replies</button>
@@ -68,7 +78,7 @@ export default function CommentFeed({ postId, comments, setComments }) {
                 </div>
             )
             )
-        }
+            }
         </div>
     )
 }

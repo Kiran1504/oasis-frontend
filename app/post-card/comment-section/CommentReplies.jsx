@@ -14,7 +14,17 @@ export default function CommentReplies({ replies }) {
                         <div className="flex flex-col h-[30px] justify-center">
                             <div>{reply.comment_by.username}</div>
                         </div>
-                        <div>{reply.comment}</div>
+                        {
+                            reply.comment ? (
+                                <div>{reply.comment}</div>
+                            ) : (
+                                <div className="max-w-[200px]">
+                                    <figure>
+                                        <img src={reply.gifURL}></img>
+                                    </figure>
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
             ))}
