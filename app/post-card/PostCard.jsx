@@ -1,7 +1,6 @@
 import React from "react";
 
 const PostCard = React.memo(({ post }) => {
-    console.log('rendered-post-card');
     return (
         <div>
             <div className="my-[1rem] px-[2rem] text-white flex flex-col w-full min-h-[100px] rounded-[15px] bg-[#2a313d]">

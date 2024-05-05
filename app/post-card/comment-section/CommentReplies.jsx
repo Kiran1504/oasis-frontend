@@ -15,14 +15,15 @@ export default function CommentReplies({ replies }) {
                             <div>{reply.comment_by.username}</div>
                         </div>
                         {
-                            reply.comment ? (
-                                <div>{reply.comment}</div>
-                            ) : (
+                            reply.gif_url ? (
                                 <div className="max-w-[200px]">
                                     <figure>
-                                        <img src={reply.gifURL}></img>
+                                        <img src={reply.gif_url}></img>
                                     </figure>
                                 </div>
+
+                            ) : (
+                                <div>{reply.comment}</div>
                             )
                         }
                     </div>

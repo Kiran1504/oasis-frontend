@@ -15,11 +15,17 @@ export default function CommentBox({ postId }) {
     const handlePostComment = async () => {
         try {
             const token = localStorage.getItem('token');
+
+            console.log(postId);
+            console.log(comment);
+            console.log(gifURL);
+
             const response = await axios.post(
                 'http://3.110.161.150:4000/api/post/comment',
                 {
-                    postId: postId,
-                    comment: comment
+                    postId: parseInt(postId),
+                    comment: comment,
+                    gifURL: gifURL
                 },
                 {
                     headers: {
@@ -31,6 +37,7 @@ export default function CommentBox({ postId }) {
 
             if (response.status === 200) {
                 setComment('');
+                setGifURL(null);
             }
         } catch (error) {
             console.log('error in posting comment: ', error);
@@ -66,7 +73,9 @@ export default function CommentBox({ postId }) {
     };
 
     const handleGifClick = (gif) => {
+        console.log(gif.url);
         setGifURL(gif.url);
+        setComment('');
     };
 
     const handleRemoveGif = () => {
@@ -90,11 +99,7 @@ export default function CommentBox({ postId }) {
                 <div ref={gifPickerRef} className="fixed top-0 left-0 z-index-99999999">
                     <GifPicker
                         tenorApiKey={"AIzaSyB8irh6rYLNBmiOzVOiBkd8OPOpgdXVd_s"}
-                        onGifClick={(gif) => {
-                            console.log('gif clicked is ', gif);
-                            handleGifClick(gif)
-                        }
-                        }
+                        onGifClick={handleGifClick}
                         onBlur={() => {
                             setDisplayGifPicker(false);
                             gifPickerRef.current.blur();
@@ -126,7 +131,7 @@ export default function CommentBox({ postId }) {
                                 placeholder="Add a comment"
                                 value={comment}
                                 onChange={(e) => handleChange(e)}
-                                className="bg-white w-full overflow-auto outline-none p-2 rounded-[10px] min-h-[40px] max-h-[200px]"
+                                className="bg-white w-full overflow-auto outline-none p-2 rounded-[10px] max-h-[200px]"
                                 rows="50"
                                 style={{ height: `${comment.split('\n').length * 20 + 20}px` }}
                             />

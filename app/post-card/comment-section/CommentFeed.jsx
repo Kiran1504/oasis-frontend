@@ -44,14 +44,14 @@ export default function CommentFeed({ postId, comments, setComments }) {
                             <div>{comment.comment_by.username}</div>
                         </div>
                         {
-                            comment.comment ? (
-                                <div>{comment.comment}</div>
-                            ) : (
+                            comment.gif_url ? (
                                 <div className="max-w-[200px]">
                                     <figure>
-                                        <img src={comment.gifURL}></img>
+                                        <img src={comment.gif_url}></img>
                                     </figure>
                                 </div>
+                            ) : (
+                                <div>{comment.comment}</div>
                             )
                         }
                         <div className="flex flex-row gap-4">

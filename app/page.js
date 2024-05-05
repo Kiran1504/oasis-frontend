@@ -10,7 +10,7 @@ export default function Home() {
     <div className="grid grid-cols-12">
       <div className="col-span-3"></div>
       <div className="col-span-6">
-        <CommentSection />
+        <GlobalFeed />
         <div className="h-[200px]"></div>
       </div>
       <div className="col-span-3  "></div>

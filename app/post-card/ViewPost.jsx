@@ -29,8 +29,10 @@ export default function ViewPost() {
             },
           }
         );
+        console.log('successfully fetched post data');
         setPost(data);
         setComments(data.comments);
+
       } catch (error) {
         console.error("Error occurred while fetching post state:", error);
       }
