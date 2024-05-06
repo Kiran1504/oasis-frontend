@@ -38,7 +38,7 @@ export default function ViewPost() {
     if (postId) {
       fetchPost();
     }
-  }, [postId, comments]);
+  }, [postId]);
 
   return (
     <div>

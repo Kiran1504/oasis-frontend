@@ -16,10 +16,6 @@ export default function CommentBox({ postId, setComments }) {
         try {
             const token = localStorage.getItem('token');
 
-            console.log(postId);
-            console.log(comment);
-            console.log(gifURL);
-
             const response = await axios.post(
                 'http://3.110.161.150:4000/api/post/comment',
                 {
@@ -36,7 +32,7 @@ export default function CommentBox({ postId, setComments }) {
             );
 
             if (response.status === 200) {
-                setComments([]);
+                setComments(prev => [...prev, response.data._comment]);
                 setComment('');
                 setGifURL(null);
             }

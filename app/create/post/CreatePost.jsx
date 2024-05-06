@@ -3,11 +3,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-import TextFields from "./TextFields";
-import UploadImage from "./UploadImage";
-import Buttons from "./Buttons";
+import TextFields from "../TextFields";
+import UploadImage from "../UploadImage";
+import Buttons from "../Buttons";
 
-export default function CreatePost() {
+export default function CreatePost({ displayType, placeholders }) {
 
   // State management of text input fields
   const [title, setTitle] = useState('');
@@ -94,11 +94,11 @@ export default function CreatePost() {
   return (
     <div className="m-4 p-4 bg-gray-800 w-[60%] rounded-[5px] text-white flex flex-col gap-4">
       <section>
-        <h1>CREATE POST</h1>
+        <h1>CREATE {displayType}</h1>
       </section>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
 
-        <TextFields setTitle={setTitle} body={body} setBody={setBody} words={words} setWords={setWords} />
+        <TextFields setTitle={setTitle} body={body} setBody={setBody} words={words} setWords={setWords} placeholders={placeholders}/>
 
         <UploadImage uploadedFile={uploadedFile} setUploadedFile={setUploadedFile} />
 

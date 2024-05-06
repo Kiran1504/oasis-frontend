@@ -4,7 +4,7 @@ import axios from "axios";
 import EmojiPicker from 'emoji-picker-react';
 import GifPicker from "gif-picker-react";
 
-export default function ReplyCommentBox({ parent_id, setComments }) {
+export default function ReplyCommentBox({ parent_id, comments, setComments }) {
 
     const [comment, setComment] = useState('');
 
@@ -16,6 +16,7 @@ export default function ReplyCommentBox({ parent_id, setComments }) {
     const gifPickerRef = useRef(null);
 
     const handlePostComment = async () => {
+
         try {
             const token = localStorage.getItem('token');
             const response = await axios.post('http://3.110.161.150:4000/api/post/childComment', {
@@ -30,8 +31,24 @@ export default function ReplyCommentBox({ parent_id, setComments }) {
                     }
                 })
 
+
             if (response.status === 200) {
-                setComments([]);
+
+                setComments(prevComments => {
+                    // Find the comment with the given parentId
+                    const updatedComments = prevComments.map(comment => {
+                        if (comment.id === parent_id) {
+                            // If found, create a new comment object with updated 'child_comments'
+                            return {
+                                ...comment,
+                                child_comments: [...comment.child_comments, response.data.childComment]
+                            };
+                        }
+                        return comment; // Return unchanged comment if not the target one
+                    });
+                    return updatedComments; // Return the updated comments array
+                });
+
                 setComment('');
                 setGifURL(null);
             }

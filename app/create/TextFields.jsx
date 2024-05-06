@@ -1,6 +1,6 @@
 // Component for the TextFields
 
-export default function TextFields({ setTitle, body, setBody, words, setWords }) {
+export default function TextFields({ setTitle, body, setBody, words, setWords, placeholders }) {
 
   // Basic structuring for the display for words in textarea
 
@@ -32,8 +32,8 @@ export default function TextFields({ setTitle, body, setBody, words, setWords })
   }
   return (
     <section className="flex flex-col gap-4">
-      <input placeholder="Title" className="p-2 text-black bg-slate-200 rounded-[5px]" onChange={(e) => updateTitle(e.target.value)}></input>
-      <textarea placeholder="Write a caption..." rows={5} value={body} onChange={(e) => updateWords(e.target.value)} className="text-black bg-slate-200 p-2 h-full rounded-[5px] resize-none"></textarea>
+      <input placeholder={`${placeholders.title}`} className="p-2 text-black bg-slate-200 rounded-[5px]" onChange={(e) => updateTitle(e.target.value)}></input>
+      <textarea placeholder={`${placeholders.body}`} rows={5} value={body} onChange={(e) => updateWords(e.target.value)} className="text-black bg-slate-200 p-2 h-full rounded-[5px] resize-none"></textarea>
       <div className="flex flex-row gap-4">
         <div>{wordsDisplay}</div>
         <div className={`${words === 4000 ? 'display-inline-block' : 'hidden'} text-red-500`}>

@@ -1,4 +1,5 @@
 import React from "react";
+import ReactPlayer from "react-player";
 
 const PostCard = React.memo(({ post }) => {
     return (
@@ -48,9 +49,6 @@ const PostCard = React.memo(({ post }) => {
                                 {
                                     post.media_type === 'video' ? (
                                         <div>
-                                            <div>
-                                                <button onClick={(e) => { e.stopPropagation(); toggleMute(); }}>{muted ? 'Unmute' : 'Mute'}</button>
-                                            </div>
                                             <ReactPlayer id="post-video-player"
                                                 controls
                                                 url={post.media}

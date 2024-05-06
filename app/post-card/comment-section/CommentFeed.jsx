@@ -58,10 +58,14 @@ export default function CommentFeed({ comments, setComments }) {
                             <button onClick={() => toggleReplyBox(index)}>Reply</button>
                             <button onClick={() => toggleViewReplies(index)} className="text-slate-400">View Replies</button>
                         </div>
+
+                        {
+                            console.log('in reply ', comments)
+                        }
                         {
                             openReplyBox[index] && (
                                 <div className="mt-[10px]">
-                                    <ReplyCommentBox parent_id={comment.id} setComments={setComments} />
+                                    <ReplyCommentBox parent_id={comment.id} comments={comments} setComments={setComments} />
                                 </div>
                             )
                         }
