@@ -1,4 +1,3 @@
-//import { useRouter } from "next/router";
 import ReactPlayer from "react-player";
 import Link from 'next/link';
 
@@ -6,14 +5,6 @@ export default function PostCardFeed({ loadMedia, likedState, followingState, po
     //const router = useRouter();
 
     const toggleMute = () => setMuted(prevMuted => !prevMuted);
-
-    const handleViewPost = () => {
-        console.log('clicked')
-        /* router.push({
-            pathname: `/view-post`,
-            query: { postId: post.id }
-        }); */
-    }
 
     const renderMedia = () => {
         if (!loadMedia || !post.media_type) return <div className="w-full h-full bg-gray-300 animate-pulse" />;
@@ -89,17 +80,14 @@ export default function PostCardFeed({ loadMedia, likedState, followingState, po
                             <figcaption>{post.likes}</figcaption>
                         </div>
                         <div className="flex flex-col">
-                            <button onClick={handleViewPost}>
-                            {
-                                localStorage.setItem('postId', post.id)
-                            }
-                                <Link href={{ pathname: '/post-card', query: post.id}}>
+                            <Link href={{ pathname: '/post-card', query: { postId: post.id } }}>
+                                <button>
                                     <figure>
                                         <img src='/comment-regular.svg' width="25px" alt="Comment Icon" />
                                     </figure>
                                     <figcaption>{post.comments}</figcaption>
-                                </Link>
-                            </button>
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </section>

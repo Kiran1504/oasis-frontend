@@ -4,7 +4,7 @@ import axios from "axios";
 import EmojiPicker from 'emoji-picker-react';
 import GifPicker from "gif-picker-react";
 
-export default function CommentBox({ postId }) {
+export default function CommentBox({ postId, setComments }) {
     const [comment, setComment] = useState('');
     const [displayEmojiPicker, setDisplayEmojiPicker] = useState(false);
     const [displayGifPicker, setDisplayGifPicker] = useState(false);
@@ -36,6 +36,7 @@ export default function CommentBox({ postId }) {
             );
 
             if (response.status === 200) {
+                setComments([]);
                 setComment('');
                 setGifURL(null);
             }

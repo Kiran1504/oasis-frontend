@@ -4,7 +4,7 @@ import CommentReplies from "./CommentReplies"
 import { useState } from "react";
 import ReplyCommentBox from "./ReplyCommentBox";
 
-export default function CommentFeed({ postId, comments, setComments }) {
+export default function CommentFeed({ comments, setComments }) {
 
     const [viewReplies, setViewReplies] = useState(Array(comments.length).fill(false));
     const [openReplyBox, setOpenReplyBox] = useState([]);
@@ -61,7 +61,7 @@ export default function CommentFeed({ postId, comments, setComments }) {
                         {
                             openReplyBox[index] && (
                                 <div className="mt-[10px]">
-                                    <ReplyCommentBox parent_id={comment.id} />
+                                    <ReplyCommentBox parent_id={comment.id} setComments={setComments} />
                                 </div>
                             )
                         }

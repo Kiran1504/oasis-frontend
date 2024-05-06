@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-//import { useRouter } from "next/router";
+import { useSearchParams } from 'next/navigation'
 import axios from "axios";
 
 import PostCard from "./PostCard";
@@ -10,11 +10,9 @@ import CommentSection from "./comment-section/CommentSection";
 export default function ViewPost() {
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState(null);
-  //const router = useRouter();
 
-  //const { pid: postId } = router.query;
-
-  const postId = localStorage.getItem('postId');
+  const searchParams = useSearchParams()
+  const postId = searchParams.get('postId')
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -29,7 +27,6 @@ export default function ViewPost() {
             },
           }
         );
-        console.log('successfully fetched post data');
         setPost(data);
         setComments(data.comments);
 
@@ -41,7 +38,7 @@ export default function ViewPost() {
     if (postId) {
       fetchPost();
     }
-  }, [postId]);
+  }, [postId, comments]);
 
   return (
     <div>

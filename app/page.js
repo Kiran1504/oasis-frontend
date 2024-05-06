@@ -1,9 +1,6 @@
 "use client"
-import GlobalFeed from "./global-feed/GlobalFeed"
 
-import ViewPost from "./post-card/ViewPost"
-import CommentSection from "./post-card/comment-section/CommentSection"
-import GifPicker from 'gif-picker-react';
+import GlobalFeed from "./global-feed/GlobalFeed"
 export default function Home() {
 
   return (
@@ -11,9 +8,8 @@ export default function Home() {
       <div className="col-span-3"></div>
       <div className="col-span-6">
         <GlobalFeed />
-        <div className="h-[200px]"></div>
       </div>
-      <div className="col-span-3  "></div>
+      <div className="col-span-3"></div>
     </div>
   )
 }
