@@ -3,9 +3,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-import TextFields from "../TextFields";
-import UploadImage from "../UploadImage";
-import Buttons from "../Buttons";
+import TextFields from "../../update/TextFields";
+import UploadImage from "../../update/UploadImage";
+import Buttons from "../../update/Buttons";
 
 export default function CreatePost({ displayType, placeholders }) {
 

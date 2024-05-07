@@ -1,6 +1,6 @@
 // Component for the final community selection and share button
 
-export default function Buttons({ communities, setSelectedCommunity }) {
+export default function Buttons({ communities, setSelectedCommunity, values }) {
 
   // Set the selected community
 

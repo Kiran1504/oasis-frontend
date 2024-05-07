@@ -23,7 +23,7 @@ export default function UserProfile() {
 
                 const token = localStorage.getItem('token');
 
-                const response = await axios.get('http://3.110.161.150:4000/api/user/profile?userId=3', {
+                const response = await axios.get('http://3.110.161.150:4000/api/user/profile?userId=4', {
                     headers: {
                         'Authorization': token,
                         'Content-Type': 'application/json'

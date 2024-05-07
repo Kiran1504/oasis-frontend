@@ -5,8 +5,8 @@ import { useState } from "react";
 import ReactPlayer from "react-player";
 
 export default function UploadImage({ uploadFile, setUploadedFile, values }) {
-  const [displayImage, setDisplayImage] = useState(null);
-  const [displayVideo, setDisplayVideo] = useState(null);
+  const [displayImage, setDisplayImage] = useState((values.media_type === 'image') ? values.media : null);
+  const [displayVideo, setDisplayVideo] = useState((values.media_type === 'video') ? values.media : null);
 
   const onDrop = useCallback(async (acceptedFiles) => {
     const file = acceptedFiles[0];
