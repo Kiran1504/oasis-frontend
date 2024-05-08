@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from "next/navigation";
 import { useEffect,useState } from "react";
-import GlobalFeed from "./global-feed/GlobalFeed";
+import GlobalFeed from "./home";
 import { GridLoader } from "react-spinners";
 export default function Home() {
   const token = localStorage.getItem('token');
