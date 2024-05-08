@@ -5,7 +5,7 @@ import { categories } from "./Constants";
 import LeftNavMenuItem from "./LeftNavItem";
 import { Context } from "./Context";
 import Link from "next/link";
-
+import Avatar from "react-avatar";
 
 //token:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwidXNlcm5hbWUiOiJBZGl0eWExMSIsImVtYWlsIjoiYWRpdHlhMTFAZ21haWwuY29tIiwiaWF0IjoxNzE1MTUyOTM4fQ.NOHvAcMBtilq6_-s1b0MgFVJyjj1oPy6iZlB1J_W2aQ"
 function SideBar() {
@@ -53,20 +53,23 @@ function SideBar() {
                 </li>
                 </Link>
             ))}
-          <div className="heading-comms bg--600 flex justify-start items-center h-[20%] w-full px-[20px]">
-                            <h1 className="text-[19px] font-light text-[#41a3ff]" >My Communities</h1>
+          <div className="h-full">  
+          <div className="heading-comms bg--600 flex justify-start items-center h-[20%] w-full pr-[20px] py-2 ">
+                            <h1 className="text-[18px] font-light text-[#41a3ff]" >My Communities</h1>
                         </div>
         {navBarData.subscribed_communities && navBarData.subscribed_communities.map((menu) => (
           <li
-          className={`text-sm cursor-pointer h-10 flex items-center px-3 mb-[4px] rounded-lg hover:bg-[#4B84FF]/[0.45] hover:bg-[#4B84FF][0.45`}>
-          <span className='text-xl mr-5'>{menu.icon}</span>
+          className={`text-sm cursor-pointer h-14 flex items-center px-3 mb-3 rounded-lg hover:bg-[#4B84FF]/[0.45] hover:bg-[#4B84FF][0.45`}>
+          <Avatar src={menu.community.image} size={25} round={true} />
           <span
-          className='origin-left duration-300 hover:block'
+          className='origin-left duration-300 hover:block pl-3'
           >
-          {menu.community.name}
+          <h1 className="text-[18px] font-light text-[#41a3ff]" >{menu.community.name}</h1>
+          <h5 className="text-[13px]">{menu.community.no_of_subscribers}</h5>
           </span>
       </li>
         ))}
+        </div>
       </div>
     </div>
   );

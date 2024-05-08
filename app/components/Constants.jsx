@@ -5,7 +5,6 @@ import { SiOpenaccess } from 'react-icons/si'
 
 export const categories = [
     { title: 'Home', path: '/', src: <IoMdHome />},
-    { title: 'Community', path: '/community', src:<IoMdPeople  /> },
+    { title: 'Communities', path: '/communities', src:<IoMdPeople  /> },
     { title: 'Events', path: '/events', src: <MdEvent />},
-    { title: 'Signin', path: '/login', src: <SiOpenaccess />, gap: 'true' },
 ];

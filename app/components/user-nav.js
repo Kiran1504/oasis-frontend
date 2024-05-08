@@ -23,6 +23,7 @@ import {
   export function UserNav() {
     const router = useRouter();
     const {navBarData} = useContext(Context)
+    const profilepic=navBarData.profile_picture
     
     const handleLogout = () => {
       localStorage.removeItem("token"); 
@@ -33,7 +34,7 @@ import {
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="relative h-10 w-10 rounded-full bg-transparent hover:bg-transparent">
             <Avatar className="h-10 w-10">
-              <AvatarImage src="/image.png" alt="@shadcn" />
+              <AvatarImage src={profilepic} alt="@shadcn" />
               <AvatarFallback>SC</AvatarFallback>
             </Avatar>
           </Button>
@@ -49,7 +50,7 @@ import {
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => router.push(`/profile/${navBarData.id}`)}>
               Profile
             </DropdownMenuItem>
             <DropdownMenuItem>
