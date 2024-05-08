@@ -7,9 +7,9 @@ import { Context } from "./Context";
 import Link from "next/link";
 
 
-
+//token:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwidXNlcm5hbWUiOiJBZGl0eWExMSIsImVtYWlsIjoiYWRpdHlhMTFAZ21haWwuY29tIiwiaWF0IjoxNzE1MTUyOTM4fQ.NOHvAcMBtilq6_-s1b0MgFVJyjj1oPy6iZlB1J_W2aQ"
 function SideBar() {
-  const { mobileMenu } = useContext(Context);
+  const { mobileMenu ,navBarData} = useContext(Context);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -30,7 +30,7 @@ function SideBar() {
   })
   return (
     <div
-      className={`md:block w-[240px] overflow-y-auto h-full py-4 border-r text-white border-slate-700 bg-black absolute md:relative z-10 hide translate-x-[-240px] md:translate-x-0 transition-all ${
+      className={`md:block w-[240px] overflow-y-auto h-screen py-4 border-r text-white border-slate-700 bg-black absolute md:relative z-10 hide translate-x-[-240px] md:translate-x-0 transition-all ${
         mobileMenu ? "translate-x-[0px]" : ""
       }`}
     >
@@ -53,6 +53,20 @@ function SideBar() {
                 </li>
                 </Link>
             ))}
+          <div className="heading-comms bg--600 flex justify-start items-center h-[20%] w-full px-[20px]">
+                            <h1 className="text-[19px] font-light text-[#41a3ff]" >My Communities</h1>
+                        </div>
+        {navBarData.subscribed_communities && navBarData.subscribed_communities.map((menu) => (
+          <li
+          className={`text-sm cursor-pointer h-10 flex items-center px-3 mb-[4px] rounded-lg hover:bg-[#4B84FF]/[0.45] hover:bg-[#4B84FF][0.45`}>
+          <span className='text-xl mr-5'>{menu.icon}</span>
+          <span
+          className='origin-left duration-300 hover:block'
+          >
+          {menu.community.name}
+          </span>
+      </li>
+        ))}
       </div>
     </div>
   );

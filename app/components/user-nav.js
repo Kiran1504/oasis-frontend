@@ -17,9 +17,12 @@ import {
   } from "@/components/ui/dropdown-menu"
   import { useRouter } from "next/navigation"
   import { Link } from "next/link"
+  import { useContext } from "react"
+  import { Context } from "./Context";
   
   export function UserNav() {
     const router = useRouter();
+    const {navBarData} = useContext(Context)
     
     const handleLogout = () => {
       localStorage.removeItem("token"); 
@@ -38,16 +41,16 @@ import {
         <DropdownMenuContent className="w-56 bg-black backdrop-blur-md text-white hover:backdrop-blur-sm" align="end" forceMount>
           <DropdownMenuLabel className="font-normal">
             <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium leading-none">shadcn</p>
+              <p className="text-sm font-medium leading-none">{navBarData.username}</p>
               <p className="text-xs leading-none text-muted-foreground">
-                m@example.com
+                {navBarData.email}
               </p>
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              <Link href='/profile'>Profile</Link> 
+              Profile
             </DropdownMenuItem>
             <DropdownMenuItem>
               Settings
