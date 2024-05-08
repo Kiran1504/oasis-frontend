@@ -54,7 +54,7 @@ export default function Form() {
             setMessage(data.message)
             setLoading(false);
             if(status === 200 && data.token){
-                localStorage.setItem('token', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJ0ZXN0MSIsImVtYWlsIjoia2lyYUBnbWFpbC5jb20iLCJpYXQiOjE3MTQyOTkwMDF9.1ZuTu6j00mouWxrPwrWR8u3Fn9RmLwuqeRE_gBJrR24');
+                localStorage.setItem('token', 'Bearer '+data.token);
                 router.push('/')
             }
         } catch (error) {

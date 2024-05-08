@@ -10,7 +10,7 @@ import MainProfileSkeleton from "./skeletons/MainProfileSkeleton";
 
 // Now skeletons are going to be added
 
-export default function UserProfile({ params }) {
+export default function UserProfile({params}) {
 
     const [userInfo, setUserInfo] = useState({});
     const [loading, setLoading] = useState(true);
@@ -24,7 +24,7 @@ export default function UserProfile({ params }) {
 
                 const token = localStorage.getItem('token');
 
-                const response = await axios.get('http://3.110.161.150:4000/api/user/profile?userId=' + params.slug , {
+                const response = await axios.get('http://3.110.161.150:4000/api/user/profile?userId='+params.slug, {
                     headers: {
                         'Authorization': token,
                         'Content-Type': 'application/json'
