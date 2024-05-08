@@ -54,7 +54,7 @@ export default function Form() {
             setMessage(data.message)
             setLoading(false);
             if(status === 200 && data.token){
-                localStorage.setItem('token', data.token);
+                localStorage.setItem('token', 'Bearer '+data.token);
                 router.push('/')
             }
         } catch (error) {

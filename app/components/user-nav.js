@@ -16,6 +16,7 @@ import {
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
   import { useRouter } from "next/navigation"
+  import { Link } from "next/link"
   
   export function UserNav() {
     const router = useRouter();
@@ -46,7 +47,7 @@ import {
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              Profile
+              <Link href='/profile'>Profile</Link> 
             </DropdownMenuItem>
             <DropdownMenuItem>
               Settings
