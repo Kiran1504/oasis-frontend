@@ -20,7 +20,10 @@ export default function MainProfile({ userInfo, setUserInfo, loading }) {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const [showLinks, setShowLinks] = useState(false);
-    const [confirmDelete, setConfirmDelete] = useState(false);
+    const [confirmDelete, setConfirmDelete] = useState({
+        delete: false,
+        postId: null,
+    });
 
     let ConditionalComponent;
 
@@ -58,18 +61,20 @@ export default function MainProfile({ userInfo, setUserInfo, loading }) {
                 )
             }
             {
-                confirmDelete && (
+                userInfo.editable && confirmDelete.delete && (
                     <div className="fixed top-0 left-0 z-50 w-full h-full overflow-hidden" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
                         {/* Also pass in post ID as prop, post ID is set through the UserPosts */}
-                        <ConfirmDelete setConfirmDelete={setConfirmDelete} />
+                        <ConfirmDelete confirmDelete={confirmDelete} setConfirmDelete={setConfirmDelete} />
                     </div>
                 )
             }
             <section className="max-h-[200px] h-[25vh]">
                 <div className="grid grid-cols-12 h-full">
                     <div className="col-span-2 flex flex-col justify-center items-center">
-                        <div className="relative border border-white h-[50%] w-[65%] flex place-content-center rounded-full overflow-hidden">
-                            <img className="w-full object-cover" src={userInfo.profile_picture || <Skeleton />}></img>
+                        <div className="col-span-2 flex flex-col justify-center items-center">
+                            <figure className="relative border border-white w-[80px] h-[80px] flex place-content-center rounded-full overflow-hidden">
+                                <img className="w-full object-cover" src={userInfo.profile_picture || '/github.svg'}></img>
+                            </figure>
                         </div>
                     </div>
                     <div className="col-span-7 mt-[-10px] p-5 flex flex-col justify-center">
@@ -80,9 +85,13 @@ export default function MainProfile({ userInfo, setUserInfo, loading }) {
                             u/{userInfo.username || <Skeleton />}
                         </div>
                     </div>
-                    <div className="col-span-3 flex flex-col justify-center items-center">
-                        <button className="m-2 px-4 py-2 border border-solid border-slate-100 rounded-xl bg-[#323741]">Edit Profile</button>
-                    </div>
+                    {
+                        userInfo.editable && (
+                            <div className="col-span-3 flex flex-col justify-center items-center">
+                                <button className="m-2 px-4 py-2 border border-solid border-slate-100 rounded-xl bg-[#323741]">Edit Profile</button>
+                            </div>
+                        )
+                    }
                 </div>
                 <div></div>
             </section>

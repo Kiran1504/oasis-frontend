@@ -43,7 +43,7 @@ const NavBar = () => {
           <h1 className=" font-semibold text-[30px] text-[#4B84FF]">OASIS</h1>
           
         </Link>
-        <div className='container flex gap-5 justify-end pr-[10px] pt-3'>
+        <div className='container text-white flex gap-5 justify-end pr-[10px] pt-3'>
             <Search />
             <UserNav />
         </div>

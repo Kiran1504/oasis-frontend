@@ -32,7 +32,7 @@ import {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="relative h-10 w-10 rounded-full bg-transparent hover:bg-transparent">
+          <Button variant="ghost" className="relative h-10 w-10 rounded-full bg-transparent hover:bg-transparent border border-solid border-white">
             <Avatar className="h-10 w-10">
               <AvatarImage src={profilepic} alt="@shadcn" />
               <AvatarFallback>SC</AvatarFallback>

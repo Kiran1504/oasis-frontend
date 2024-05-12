@@ -16,7 +16,7 @@ export default function GlobalFeed() {
         const fetchPosts = async () => {
             try {
                 const response = await axios.get('http://3.110.161.150:4000/feed/global');
-                
+
                 setPosts(response.data);
                 setOriginalPosts(response.data);
             } catch (error) {

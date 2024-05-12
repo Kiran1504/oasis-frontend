@@ -1,15 +1,3 @@
-import "./globals.css";
-
-
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body>
-        {children}
-      </body>
-    </html>
-  );
-}
 'use client'
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -22,21 +10,23 @@ const inter = Inter({ subsets: ["latin"] });
 
 
 export default function RootLayout({ children }) {
-  const token = localStorage.getItem('token'); 
+  const token = localStorage.getItem('token');
   return (
 
     <AppContextProvider>
       <html lang="en">
-      <body className={inter.className}>
-      {token  ? <NavBar />: null}
-      <div className='flex h-full gap-5 bg-black'>
-            {token ?  <SideBar /> : null}
-            <div className='grow'>
+        <body className={inter.className}>
+          {token ? <NavBar /> : null}
+          <div className="grid grid-cols-12">
+            <div className="col-span-2 gap-5 bg-black">
+              {token ? <SideBar /> : null}
+            </div>
+            <div className='col-span-9'>
               <div>{children}</div>
             </div>
           </div>
-      </body>
-    </html>
+        </body>
+      </html>
     </AppContextProvider>
   );
 }

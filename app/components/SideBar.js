@@ -30,7 +30,7 @@ function SideBar() {
   })
   return (
     <div
-      className={`md:block w-[240px] overflow-y-auto h-screen py-4 border-r text-white border-slate-700 bg-black absolute md:relative z-10 hide translate-x-[-240px] md:translate-x-0 transition-all ${
+      className={`md:block w-full overflow-y-auto h-screen py-4 border-r text-white border-slate-700 bg-black absolute md:relative z-10 hide translate-x-[-240px] md:translate-x-0 transition-all ${
         mobileMenu ? "translate-x-[0px]" : ""
       }`}
     >
@@ -55,11 +55,11 @@ function SideBar() {
             ))}
           <div className="h-full">  
           <div className="heading-comms bg--600 flex justify-start items-center h-[20%] w-full pr-[20px] py-2 ">
-                            <h1 className="text-[18px] font-light text-[#41a3ff]" >My Communities</h1>
+                            <h1 className="text-[18px] font-light text-[#41a3ff]">My Communities</h1>
                         </div>
-        {navBarData.subscribed_communities && navBarData.subscribed_communities.map((menu) => (
-          <li
-          className={`text-sm cursor-pointer h-14 flex items-center px-3 mb-3 rounded-lg hover:bg-[#4B84FF]/[0.45] hover:bg-[#4B84FF][0.45`}>
+        {navBarData.subscribed_communities && navBarData.subscribed_communities.map((menu, index) => (
+          <li key={index}
+          className={`text-sm cursor-pointer h-14 flex items-center px-3 mb-3 rounded-lg hover:bg-[#4B84FF]/[0.45] hover:bg-[#4B84FF][0.45]`}>
           <Avatar src={menu.community.image} size={25} round={true} />
           <span
           className='origin-left duration-300 hover:block pl-3'
