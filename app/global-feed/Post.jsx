@@ -3,7 +3,7 @@ import PostCardFeed from "./PostCardFeed";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
-export default function Post({ post, isActive, setActiveVideoId, muted, setMuted }) {
+export default function Posts({ post, isActive, setActiveVideoId, muted, setMuted }) {
     const [likedState, setLikedState] = useState(null);
     const [followingState, setFollowingState] = useState(null);
     const postRef = useRef(null);

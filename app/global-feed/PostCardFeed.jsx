@@ -2,7 +2,6 @@ import ReactPlayer from "react-player";
 import Link from 'next/link';
 
 export default function PostCardFeed({ loadMedia, likedState, followingState, post, isActive, muted, setMuted, postRef, playerRef }) {
-    //const router = useRouter();
 
     const toggleMute = () => setMuted(prevMuted => !prevMuted);
 
@@ -77,7 +76,7 @@ export default function PostCardFeed({ loadMedia, likedState, followingState, po
                             <figure>
                                 <img src={likedState ? '/heart-solid.svg' : '/heart-regular.svg'} width="25px" alt="Heart Icon" />
                             </figure>
-                            <figcaption>{post.likes}</figcaption>
+                            {/* <figcaption>{post.likes}</figcaption> */}
                         </div>
                         <div className="flex flex-col">
                             <Link href={{ pathname: '/post-card', query: { postId: post.id } }}>
@@ -85,7 +84,7 @@ export default function PostCardFeed({ loadMedia, likedState, followingState, po
                                     <figure>
                                         <img src='/comment-regular.svg' width="25px" alt="Comment Icon" />
                                     </figure>
-                                    <figcaption>{post.comments}</figcaption>
+                                    <figcaption>{post.comments.length}</figcaption>
                                 </button>
                             </Link>
                         </div>
