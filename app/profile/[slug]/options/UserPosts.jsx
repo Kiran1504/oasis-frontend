@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function UserPosts({ posts}) {
+import Link from 'next/link';
+
+export default function UserPosts({ posts, setConfirmDelete }) {
 
     /* useEffect(() => {
         const updateUserPosts = async () => {
@@ -35,24 +37,24 @@ export default function UserPosts({ posts}) {
         };
     }, []); */
 
-    const handleCreatePostClick = () => {
-        // navigate('/Paste create post relative url here')
-    }
-
-    const handleDeletePost = () => {
+    const handleDeletePost = (postId) => {
         // pass in a post ID to the function
         // also take in a useState like post ID from the MainProfile and set it to this particular post's ID
-        setConfirmDelete(true);
+
+        console.log(postId);
+
+        setConfirmDelete({ delete: true, postId: parseInt(postId) });
     }
 
     return (
         <div>
-            <button onClick={handleCreatePostClick} className="p-2 border border-solid border-slate-400 bg-[#2a313d] font-[2rem] rounded-full">+ Create Post &nbsp;</button>
+            <Link href={{ pathname: '/create/post' }}>
+                <button className="p-2 border border-solid border-slate-400 bg-[#2a313d] font-[2rem] rounded-full">+ Create Post &nbsp;</button>
+            </Link>
             {
                 posts.map((post, index) => {
-
                     const [likedSVG, setLikedSVG] = useState((post.liked) ? true : false);
-                    const [imageSrc, setImageSrc] = useState((post.liked) ? 'heart-solid.svg' : 'heart-regular.svg');
+                    const [imageSrc, setImageSrc] = useState((post.liked) ? '/heart-solid.svg' : '/heart-regular.svg');
 
                     const handlePostLiked = () => {
                         setLikedSVG(liked => !liked);
@@ -72,28 +74,35 @@ export default function UserPosts({ posts}) {
                     return (
                         <div key={index} className="bg-[#2a313d] my-4 border border-solid border-slate-400 rounded-2xl py-4 px-6">
                             <section className="flex flex-row justify-between">
-                                <h1 className="font-bold text-2xl">{post.title}</h1>
-                                <button onClick={handleDeletePost}>
+                                <div className="flex flex-col gap-2">
+                                    <h1 className="font-bold text-2xl">{post.title}</h1>
+                                    <h1 className="font-bold text-md">@{post.community.name}</h1>
+                                </div>
+                                <button onClick={() => handleDeletePost(post.id)}>
                                     <figure>
-                                        <img src='/trash-solid.svg' width="20px" height="20px" className="mt-[3px]"></img>
+                                        <img src='/trash-solid.svg' width="20px" height="20px" className="mt-[-20px]"></img>
                                     </figure>
                                 </button>
                             </section>
                             <section className="my-4">{post.description}</section>
                             <section className="flex flex-row gap-5">
                                 <div>
-                                    <button onClick={handlePostLiked}>
+                                    <button>
                                         <figure className="flex flex-col items-center">
                                             <img src={imageSrc} className="w-[25px]"></img>
-                                            <figcaption>{post.likes}</figcaption>
+                                            <figcaption>{post.no_of_likes}</figcaption>
                                         </figure>
                                     </button>
                                 </div>
                                 <div>
-                                    <figure className="flex flex-col items-center">
-                                        <img src='/comment-regular.svg' className="w-[25px]"></img>
-                                        <figcaption>{post.comments}</figcaption>
-                                    </figure>
+                                    <Link href={{ pathname: '/post-card', query: { postId: post.id } }}>
+                                        <button>
+                                            <figure>
+                                                <img src='/comment-regular.svg' width="25px" alt="Comment Icon" />
+                                            </figure>
+                                            <figcaption>{post.comments}</figcaption>
+                                        </button>
+                                    </Link>
                                 </div>
                                 <div>
                                     <figure className="flex flex-col items-center">

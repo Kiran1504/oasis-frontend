@@ -1,3 +1,5 @@
+'use client'
+
 import FollowersCard from "./FollowersCard";
 import MainProfile from "./MainProfile";
 
@@ -7,9 +9,7 @@ import axios from "axios";
 import FollowersCardSkeleton from "./skeletons/FollowersCardSkeleton";
 import MainProfileSkeleton from "./skeletons/MainProfileSkeleton";
 
-// Now skeletons are going to be added
-
-export default function UserProfile() {
+export default function UserProfile({ params }) {
 
     const [userInfo, setUserInfo] = useState({});
     const [loading, setLoading] = useState(true);
@@ -23,13 +23,13 @@ export default function UserProfile() {
 
                 const token = localStorage.getItem('token');
 
-                const response = await axios.get('http://3.110.161.150:4000/api/user/profile?userId=4', {
+                const response = await axios.get(`http://3.110.161.150:4000/api/user/profile?userId=${params.slug}`, {
                     headers: {
                         'Authorization': token,
                         'Content-Type': 'application/json'
                     }
                 });
-                
+                console.log(response.data);
                 setUserInfo(response.data);
                 setLoading(false);
             }

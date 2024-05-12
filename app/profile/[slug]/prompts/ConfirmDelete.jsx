@@ -2,25 +2,29 @@
 
 import axios from "axios"
 
-export default function ConfirmDelete({ setConfirmDelete }) {
+export default function ConfirmDelete({ confirmDelete, setConfirmDelete }) {
 
     const handleConfirmDelete = async () => {
-        //accept postID in the argument
         try {
-            // extract token from cookies
-
-            const data = { postID:  '123'}
-            await axios.delete('// api end point here', data, {
+            const token = localStorage.getItem('token');
+            const postId = parseInt(confirmDelete.postId);
+    
+            const response = await axios.delete('http://3.110.161.150:4000/post/delete', {
                 headers: {
-                    //'Authorization': token,
-                    //'Content-Type': 'application/json'
-                }
-            })
+                    'Authorization': token,
+                    'Content-Type': 'application/json'
+                },
+                data: { postId } // Pass the data in the 'data' field
+            });
+    
+            if (response.status === 204) {
+                setConfirmDelete({ delete: false, postId: null });
+            }
+        } catch (error) {
+            console.error('Error occurred while deleting the post:', error);
         }
-        catch (error) {
-            console.log('error occured while deleting the post: ', error)
-        }
-    }
+    };
+    
 
     const handleCancelDelete = () => {
         setConfirmDelete(false);
